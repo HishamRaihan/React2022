@@ -4,10 +4,11 @@ import UsersList from './components/Users/UsersList';
 
 
 function App() {
-  // we will lift the users state up to this component because it is where AddUser and UsersList meet 
+  // we will lift the users state up to this component because it is where AddUser and UsersList meet array of users
   const [usersList, setUsersList] = useState([])
 
 const addUserHandler =(userName, userAge) =>{
+  // update state relys on previous state we need to use the function form becauise the function will get the latest snapshot when react performs state update
   setUsersList((prevUsersList) =>{
     // copy all elements from prevusersList
     // making a new js object for each user
