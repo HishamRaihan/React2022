@@ -11,12 +11,13 @@ const addUserHandler =(userName, userAge) =>{
   // update state relys on previous state we need to use the function form becauise the function will get the latest snapshot when react performs state update
   setUsersList((prevUsersList) =>{
     // copy all elements from prevusersList
-    // making a new js object for each user
+    // making a new js object for each user and we're adding that to the userList array...
     return [...prevUsersList, {name: userName, age: userAge, id: Math.random().toString()}]
   })
 }
   return (
     <div>
+      {/* prop addUser passing an event */}
       <AddUser onAddUser={addUserHandler} />
       {/* need to set the users props because that is what we're recieving */}
       <UsersList users={usersList} />
