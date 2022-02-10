@@ -16,10 +16,11 @@ function App() {
   };
 
   return (
-    <div>
+    // React.Fragment works like the Wrapper class that returns props.children
+    <React.Fragment>
       <AddUser onAddUser={addUserHandler} />
       <UsersList users={usersList} />
-    </div>
+    </React.Fragment>
   );
 }
 
