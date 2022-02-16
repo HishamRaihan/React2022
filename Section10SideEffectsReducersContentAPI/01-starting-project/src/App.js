@@ -1,19 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Login from './components/Login/Login';
 import Home from './components/Home/Home';
 import MainHeader from './components/MainHeader/MainHeader';
 
 function App() {
+
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // executed by react, and after every component reEvaluation
+  // would only run once when the app runs
+  useEffect(() => {
+    const storedUserLoggedInInformation = localStorage.getItem('isLoggedIn')
+    if (storedUserLoggedInInformation === '1') {
+      setIsLoggedIn(true)
+    }
+  }, []) // since our dependecies didnt change it is only loaded once hence user is still logged in
 
   const loginHandler = (email, password) => {
     // We should of course check email and password
     // But it's just a dummy/ demo anyways
+    localStorage.setItem('isLoggedIn', '1')
     setIsLoggedIn(true);
   };
 
   const logoutHandler = () => {
+    localStorage.removeItem('isLoggedIn')
     setIsLoggedIn(false);
   };
 
@@ -25,6 +37,7 @@ function App() {
         {isLoggedIn && <Home onLogout={logoutHandler} />}
       </main>
     </React.Fragment>
+
   );
 }
 
